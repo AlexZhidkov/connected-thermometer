@@ -1,5 +1,3 @@
-// TempBug Example Device Code
- 
 /* GLOBALS and CONSTANTS -----------------------------------------------------*/
 
 // all calculations are done in Kelvin
@@ -7,7 +5,7 @@
 // check your datasheet
 const b_therm = 3988;
 const t0_therm = 298.15;
-const WAKEINTERVAL_MIN = 15; // interval between wake-and-reads in minutes
+const WAKEINTERVAL_MIN = 1; // interval between wake-and-reads in minutes
 
 /* CLASS AND GLOBAL FUNCTION DEFINITIONS -------------------------------------*/
 
@@ -90,9 +88,9 @@ imp.sleep(0.001);
 local id = hardware.getdeviceid();
 local datapoint = {
     "id" : id,
-    "temp" : format("%.2f",myThermistor.read_f()),
+    "temp" : format("%.2f",myThermistor.read_c()),
 }
-agent.send("data",datapoint);
+agent.send("event", datapoint);
 therm_en_l.write(1);
 
 //Sleep for 15 minutes and 1 second, minus the time past the 0:15
