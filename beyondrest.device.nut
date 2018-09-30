@@ -88,6 +88,7 @@ imp.sleep(0.001);
 local id = hardware.getdeviceid();
 local datapoint = {
     "id" : id,
+    "name" : "POC",
     "temp" : format("%.2f",myThermistor.read_c()),
 }
 agent.send("event", datapoint);
