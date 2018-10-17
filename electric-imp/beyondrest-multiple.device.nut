@@ -114,8 +114,8 @@ function getTemp() {
 	local temp_1 = 1;   
 	local temp_2 = 2;
 	local temp_3 = 3;
-    // Wake up in five seconds for the next reading 
-    imp.wakeup(5.0, getTemp);
+    // Wake up in five minutes for the next reading 
+    imp.wakeup(300.0, getTemp);
 
     // Reset the 1-Wire bus
     local result = onewireReset();
