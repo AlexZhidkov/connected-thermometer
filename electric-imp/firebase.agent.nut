@@ -6,7 +6,7 @@ const FIREBASE_AUTH_KEY = "YOUR_FIREBASE_AUTH_KEY";
 firebase <- Firebase(FIREBASE_NAME, FIREBASE_AUTH_KEY);
 
 device.on("event", function(event) {
-    agentId = split(http.agenturl(), "/").pop();
+    agentId <- split(http.agenturl(), "/").pop();
     event.time <- formatDate();
     firebase.write("/data/"+agentId, event, function(error, data) {
         if (error) {
