@@ -1,3 +1,12 @@
+Change jumper to switch from battery to USB power
+#BlinkUp
+Sign up to https://impcentral.electricimp.com/ide
+Download the electric imp app on your smart phone
+- Configure a device
+- Setup WiFi
+
+https://beyondrest-dev.firebaseapp.com
+
 # Resources
 [TEMPBUG: INTERNET-CONNECTED THERMOMETER](https://www.instructables.com/id/TempBug-internet-connected-thermometer/)  
 [electric imp](ide.electricimp.com)  

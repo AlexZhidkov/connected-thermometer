@@ -3,9 +3,12 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<h2>Temperature: </h2>
-<ul>
-  <li class="text" *ngFor="let item of items | async">
-    <h2>{{item.name}} {{item.temp}} </h2>
-  </li>
-</ul>
+<div *ngFor="let item of items | async">
+  <h2>Temperature in room One: </h2>
+  <div>Measured {{item.time}} UTC</div>
+  <ul>
+    <li class="text" *ngFor="let sensor of item.sensors">
+      <h2>{{sensor.name}}: {{sensor.temp}} C</h2>
+    </li>
+  </ul>
+</div>
