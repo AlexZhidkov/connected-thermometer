@@ -4,7 +4,7 @@
   </h1>
 </div>
 <div *ngFor="let item of items | async">
-  <h2>Temperature in room One: </h2>
+  <h2>Temperature in Perth Room 1: </h2>
   <div>Measured {{item.time}} UTC</div>
   <ul>
     <li class="text" *ngFor="let sensor of item.sensors">
