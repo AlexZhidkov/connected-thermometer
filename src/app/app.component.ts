@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   items: Observable<any[]>;
-  title = 'Beyond Rest';
   constructor(db: AngularFireDatabase) {
     this.items = db.list('data').valueChanges();
   }
