@@ -1,8 +1,5 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
+<mat-toolbar color="primary">Welcome to {{ title }}</mat-toolbar>
+
 <div *ngFor="let item of items | async">
   <h2>Temperature in Perth Room 1: </h2>
   <div>Measured {{item.time}} UTC</div>
