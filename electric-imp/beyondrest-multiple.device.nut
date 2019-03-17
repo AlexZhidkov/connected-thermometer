@@ -110,10 +110,7 @@ function getTemp() {
     local tempLSB = 0;
     local tempMSB = 0;
     local tempCelsius = 0;
-	// Data from three sensors
-	local temp_1 = 1;   
-	local temp_2 = 2;
-	local temp_3 = 3;
+
     // Wake up in five minutes for the next reading 
     imp.wakeup(300.0, getTemp);
 
@@ -130,7 +127,13 @@ function getTemp() {
     
         // Wait 750ms for the temperature conversion to finish
         imp.sleep(0.75);
-    
+				
+        // Data to send
+        local datapoint = {
+            "transmitter_id" : hardware.getdeviceid(),
+            "sensors": []
+        }
+
         foreach (device, slaveId in slaves) {
             // Run through the list of discovered slave devices, getting the temperature
             // if a given device is of the correct family number: 0x28 for BS18B20
@@ -161,40 +164,11 @@ function getTemp() {
                 local raw = (tempMSB << 8) + tempLSB;
                 tempCelsius = ((raw << 16) >> 16) * 0.0625;
 				
-				// Sending the data
-				local id = hardware.getdeviceid();
-				
-				if (device == 0) {
-				temp_1 = tempCelsius;
-				}
-				if (device == 1) {
-				temp_2 = tempCelsius;
-				}
-				if (device == 2) {
-				temp_3 = tempCelsius;
-				}
-				local datapoint = {
-				    "transmitter_id" : id,
-				    "sensors": [
-				        {
-				            "name": "First Sensor",
-				            "temp": format("%.2f",temp_1)
-				        },
-				        				        {
-				            "name": "Second Sensor",
-				            "temp": format("%.2f",temp_2)
-				        },
-				        				        {
-				            "name": "Waterproof",
-				            "temp": format("%.2f",temp_3)
-				        }
-				    ]}
-
-				agent.send("event",datapoint);
-		
+                datapoint.sensors.push({"sensor": device + 1, "temp": format("%.2f",tempCelsius)});
                 server.log(format("Device: %02d Family: %02x Serial: %02x%02x%02x%02x%02x%02x Temp: %3.2f", (device + 1), slaveId[7], slaveId[1], slaveId[2], slaveId[3], slaveId[4], slaveId[5], slaveId[6], tempCelsius));
             }
         }
+        agent.send("event", datapoint);
     }
 }
 
