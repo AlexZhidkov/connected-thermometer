@@ -1,18 +1,11 @@
 <mat-toolbar color="primary">
-  Welcome to Beyond Rest
+  <button mat-icon-button>
+    <mat-icon routerLink="/">home</mat-icon>
+  </button> Welcome to Beyond Rest
   <span class="toolbar-spacer"></span>
   <button mat-icon-button>
-    <mat-icon>settings</mat-icon>
+    <mat-icon routerLink="/settings">settings</mat-icon>
   </button>
 </mat-toolbar>
-<mat-card>
-  <div *ngFor="let item of items | async">
-    <h2>Temperature in {{item.name}}: </h2>
-    <div>Measured {{item.time}} UTC</div>
-    <ul>
-      <li class="text" *ngFor="let sensor of item.sensors">
-        <h2>{{sensor.name}}: {{sensor.temp}} C</h2>
-      </li>
-    </ul>
-  </div>
-</mat-card>
+
+<router-outlet></router-outlet>

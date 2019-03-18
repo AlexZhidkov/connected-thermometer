@@ -1,0 +1,11 @@
+<mat-card>
+  <div *ngFor="let item of items | async">
+    <h2>Temperature in {{item.name}}: </h2>
+    <div>Measured {{item.time}} UTC</div>
+    <ul>
+      <li class="text" *ngFor="let sensor of item.sensors">
+        <h2>{{sensor.name}}: {{sensor.temp}} C</h2>
+      </li>
+    </ul>
+  </div>
+</mat-card>
