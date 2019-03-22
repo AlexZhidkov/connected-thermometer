@@ -1,1 +1,62 @@
-<pre>{{(settings | async)?.transmitter | json}}</pre>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Settings</mat-card-title>
+    </mat-card-header>
+    <mat-card-content *ngIf="settings">
+        <mat-card>
+            <mat-card-header>
+                <mat-form-field>
+                    <input matInput placeholder="Device 0 - Room name "
+                        [(ngModel)]="settings.transmitter['232053ab5ba5ceee'].name">
+                </mat-form-field>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="Sensor 1"
+                        [(ngModel)]="settings.transmitter['232053ab5ba5ceee'].sensors[0]">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Sensor 2"
+                        [(ngModel)]="settings.transmitter['232053ab5ba5ceee'].sensors[1]">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Sensor 3"
+                        [(ngModel)]="settings.transmitter['232053ab5ba5ceee'].sensors[2]">
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card>
+            <mat-card-header>
+                <mat-form-field>
+                    <input matInput placeholder="Device 1 - Room name"
+                        [(ngModel)]="settings.transmitter['232b79ab5ba5ceee'].name">
+                </mat-form-field>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="Sensor 1"
+                        [(ngModel)]="settings.transmitter['232b79ab5ba5ceee'].sensors[0]">
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+        <mat-card>
+            <mat-card-header>
+                <mat-form-field>
+                    <input matInput placeholder="Device 2 - Room name"
+                        [(ngModel)]="settings.transmitter['23529caa5ba5ceee'].name">
+                </mat-form-field>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="Sensor 1"
+                        [(ngModel)]="settings.transmitter['23529caa5ba5ceee'].sensors[0]">
+                </mat-form-field>
+            </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="save()" routerLink="/">Save</button>
+        <button mat-button routerLink="/">Exit</button>
+    </mat-card-actions>
+</mat-card>

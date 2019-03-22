@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 
 @Component({
   selector: 'app-settings',
@@ -8,11 +7,19 @@ import { Observable } from 'rxjs';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  settings: Observable<any>;
+  settingsRef: AngularFireObject<any>;
+  settings: any;
 
   constructor(private db: AngularFireDatabase) { }
 
   ngOnInit() {
-    this.settings = this.db.object('settings').valueChanges();
+    this.settingsRef = this.db.object('settings');
+    this.settingsRef.snapshotChanges().subscribe(settings => {
+      this.settings = settings.payload.val();
+    });
+  }
+
+  save() {
+    this.settingsRef.update(this.settings);
   }
 }
