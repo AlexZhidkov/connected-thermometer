@@ -24,6 +24,9 @@ export class HomeComponent implements OnInit {
         x.forEach((e) => {
           const c = e as any;
           c.name = this.settings.transmitter[c.transmitter_id].name;
+          const localDateTimeString = (new Date(c.time + ' GMT+00:00')).toString();
+          const lastColonIndex = localDateTimeString.lastIndexOf(':');
+          c.timeToDisplay = localDateTimeString.substring(0, lastColonIndex);
           c.sensors.forEach(s => s.name = this.settings.transmitter[c.transmitter_id].sensors[s.sensor - 1]);
         });
         return x;
